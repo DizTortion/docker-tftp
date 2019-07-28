@@ -1,0 +1,13 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: image
+    image: plugins/docker
+    settings:
+      repo: registry.internal.hoffmeister.biz/diztortion/tftpd
+      registry: registry.internal.hoffmeister.biz
+      auto_tag: false
+    when:
+      branch:
+        - master
