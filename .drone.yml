@@ -6,9 +6,14 @@ steps:
   - name: image
     image: plugins/docker
     settings:
-      repo: registry.internal.hoffmeister.biz/diztortion/tftpd
-      registry: registry.internal.hoffmeister.biz
-      auto_tag: false
+      repo: docker-registry.internal.hoffmeister.biz/diztortion/tftpd
+      registry: docker-registry.internal.hoffmeister.biz
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      tags: latest
+      auto_tag: true
     when:
       branch:
         - master
