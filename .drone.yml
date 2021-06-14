@@ -6,8 +6,8 @@ steps:
   - name: image
     image: plugins/docker
     settings:
-      repo: docker-registry.internal.hoffmeister.biz/diztortion/tftpd
-      registry: docker-registry.internal.hoffmeister.biz
+      repo: harbor.home.hoffmeister.biz/diztortion/tftpd
+      registry: harbor.home.hoffmeister.biz
       username:
         from_secret: docker_username
       password:
