@@ -11,7 +11,7 @@ steps:
   - name: docker
     image: harbor.home.hoffmeister.biz/docker.io-cache/plugins/kaniko
     settings:
-      repo: harbor.home.hoffmeister.biz/diztortion/tftp
+      repo: harbor.home.hoffmeister.biz/diztortion/tftp-hpa
       registry: harbor.home.hoffmeister.biz
       username:
         from_secret: docker_username
