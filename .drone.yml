@@ -3,17 +3,17 @@ type: docker
 name: default
 
 steps:
-  - name: image
-    image: plugins/docker
+  - name: tag image
+    image: harbor.home.hoffmeister.biz/docker.io-cache/library/alpine
+    commands:
+      - apk update
+      - apk info tftp-hpa | grep "installed size:" | sed -E 's/.+-(\d+\.\d+(\.\d+)?-r\d+) installed size:/\1/' > .tags
+  - name: docker
+    image: harbor.home.hoffmeister.biz/docker.io-cache/plugins/kaniko
     settings:
-      repo: harbor.home.hoffmeister.biz/diztortion/tftpd
+      repo: harbor.home.hoffmeister.biz/diztortion/tftp
       registry: harbor.home.hoffmeister.biz
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
-      tags: latest
-      auto_tag: true
-    when:
-      branch:
-        - master
