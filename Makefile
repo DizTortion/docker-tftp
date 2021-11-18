@@ -26,6 +26,6 @@ clean_all:
 
 check-env:
 ifndef TAG
-        TAG := $(shell docker run -e PACKAGE_NAME --rm alpine /bin/sh -c "apk update > /dev/null && apk info ${PACKAGE_NAME} | grep \"installed size:\" | sed -E 's/.+-(\d+\.\d+(\.\d+)?-r\d+) installed size:/\1/'")
+        TAG := $(shell docker run --rm alpine /bin/sh -c "apk update > /dev/null && apk info ${PACKAGE_NAME} | grep \"installed size:\" | sed -E 's/.+-(\d+\.\d+(\.\d+)?-r\d+) installed size:/\1/'")
         $(info TAG is undefined. Using latest release: $(TAG))
 endif
