@@ -2,7 +2,7 @@ FROM alpine
 
 ARG TAG
 
-RUN apk add --no-cache tftp-hpa=$TAG
+RUN if [ -z ${TAG} ]; then apk add --no-cache samba; else apk add --no-cache samba=$TAG; fi
 
 VOLUME /var/tftproot
 
