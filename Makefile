@@ -1,5 +1,5 @@
 REGISTRY=harbor.home.hoffmeister.biz
-IMAGE=diztortion/tftp
+IMAGE=diztortion/tftp-hpa
 REGISTRY_IMAGE=${REGISTRY}/${IMAGE}
 
 PACKAGE_NAME=tftp-hpa
