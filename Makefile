@@ -26,6 +26,9 @@ clean_all:
 
 check-env:
 ifndef TAG
-        TAG := $(shell docker run --rm alpine /bin/sh -c "apk update > /dev/null && apk info ${PACKAGE_NAME} | grep \"installed size:\" | sed -E 's/.+-(\d+\.\d+(\.\d+)?-r\d+) installed size:/\1/'")
+TAG := $(shell \
+        curl --silent https://dl-cdn.alpinelinux.org/alpine/latest-stable/main/x86_64/APKINDEX.tar.gz --output - | \
+        tar --extract --gunzip --to-stdout "APKINDEX" | \
+        grep --perl-regexp --only-matching --null-data "P:${PACKAGE_NAME}\nV:\K([^\n]+)")
         $(info TAG is undefined. Using latest release: $(TAG))
 endif
