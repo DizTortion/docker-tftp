@@ -6,10 +6,9 @@ steps:
   - name: build
     image: harbor.home.hoffmeister.biz/diztortion/podman:alpine
     environment:
-      DOCKER_HOST: unix:///run/user/1000/podman/podman.sock
+      DOCKER_HOST: tcp://localhost:2375
     commands:
-      - find /proc 
-      - podman info
+      - podman-remote info
       - make
   - name: tag image
     image: harbor.home.hoffmeister.biz/docker.io-cache/library/alpine
