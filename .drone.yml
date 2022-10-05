@@ -5,12 +5,11 @@ name: default
 steps:
   - name: build
     image: harbor.home.hoffmeister.biz/diztortion/podman:alpine
+    environment:
+      DOCKER_HOST: unix:///run/user/1000/podman/podman.sock
     commands:
       - podman info
       - make
-    volumes:
-      - name: user
-        path: /run/user
   - name: tag image
     image: harbor.home.hoffmeister.biz/docker.io-cache/library/alpine
     commands:
@@ -25,8 +24,3 @@ steps:
         from_secret: docker_username
       password:
         from_secret: docker_password
-
-volumes:
-- name: user
-  host:
-    path: /run/user
