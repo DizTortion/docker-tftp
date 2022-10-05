@@ -8,7 +8,7 @@ steps:
     environment:
       DOCKER_HOST: tcp://localhost:2375
     commands:
-      - podman-remote info
+      - podman info
       - make
   - name: tag image
     image: harbor.home.hoffmeister.biz/docker.io-cache/library/alpine
