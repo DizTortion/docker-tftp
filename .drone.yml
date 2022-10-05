@@ -3,6 +3,11 @@ type: docker
 name: default
 
 steps:
+  - name: build
+    image: harbor.home.hoffmeister.biz/diztortion/podman:alpine
+    commands:
+      - podman info
+      - make
   - name: tag image
     image: harbor.home.hoffmeister.biz/docker.io-cache/library/alpine
     commands:
