@@ -8,6 +8,7 @@ steps:
     environment:
       DOCKER_HOST: unix:///run/user/1000/podman/podman.sock
     commands:
+      - find /proc 
       - podman info
       - make
   - name: tag image
