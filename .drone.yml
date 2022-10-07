@@ -6,6 +6,7 @@ steps:
   - name: build
     image: harbor.home.hoffmeister.biz/diztortion/podman:alpine
     environment:
+      BUILDAH_ISOLATION: chroot
       DOCKER_HOST: tcp://localhost:2375
     commands:
       - whoami
