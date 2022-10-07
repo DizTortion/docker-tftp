@@ -11,7 +11,6 @@ steps:
       DOCKER_HOST: tcp://localhost:2375
     commands:
       - whoami
-      - podman unshare
       - podman info
       - make
   - name: tag image
