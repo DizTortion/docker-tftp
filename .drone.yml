@@ -6,25 +6,12 @@ steps:
   - name: build
     image: harbor.home.hoffmeister.biz/diztortion/podman:alpine
     environment:
-      BUILDAH_ISOLATION: chroot
-      _BUILDAH_STARTED_IN_USERNS: ""
-      STORAGE_DRIVER: vfs
-      DOCKER_HOST: tcp://localhost:2375
+      HARBOR_USERNAME:
+        from_secret: docker_username
+      HARBOR_PASSWORD:
+        from_secret: docker_password
     commands:
       - whoami
+      - echo ${HARBOR_PASSWORD} | podman login --username ${HARBOR_USERNAME} --password-stdin ${HARBOR_REGISTRY}
       - podman info
       - make
-  - name: tag image
-    image: harbor.home.hoffmeister.biz/docker.io-cache/library/alpine
-    commands:
-      - apk update
-      - apk info tftp-hpa | grep "installed size:" | sed -E 's/.+-(\d+\.\d+(\.\d+)?-r\d+) installed size:/\1/' > .tags
-  - name: docker
-    image: harbor.home.hoffmeister.biz/docker.io-cache/plugins/kaniko
-    settings:
-      repo: harbor.home.hoffmeister.biz/diztortion/tftp-hpa
-      registry: harbor.home.hoffmeister.biz
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
