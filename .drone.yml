@@ -12,6 +12,7 @@ steps:
         from_secret: docker_password
     commands:
       - whoami
+      - podman system reset --force
       - echo $HARBOR_PASSWORD | podman login --username $HARBOR_USERNAME --password-stdin harbor.home.hoffmeister.biz
       - podman info
       - make
