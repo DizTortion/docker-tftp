@@ -12,7 +12,6 @@ steps:
       HARBOR_PASSWORD:
         from_secret: docker_password
     commands:
-      - whoami
       - echo $HARBOR_PASSWORD | podman login --username $HARBOR_USERNAME --password-stdin harbor.home.hoffmeister.biz
       - podman info
       - make
