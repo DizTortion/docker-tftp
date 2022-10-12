@@ -5,7 +5,7 @@ name: default
 steps:
   - name: build
     image: harbor.home.hoffmeister.biz/diztortion/podman:alpine
-    pull: Always
+    pull: always
     environment:
       HARBOR_USERNAME:
         from_secret: docker_username
